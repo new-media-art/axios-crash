@@ -1,6 +1,6 @@
 // AXIOS GLOBALS
 axios.defaults.headers.common['X-Auth-Token'] =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMxMiwiZW1haWwiOiJ0ZXN0MkBob3RtYWlsLmNvbSIsImdpdmVuX25hbWUiOiJBYmMiLCJmYW1pbHlfbmFtZSI6IkRlZiIsInBpY3R1cmUiOm51bGwsInByZWZlcnJlZF91c2VybmFtZSI6IkFiY2RlZiIsImlhdCI6MTY0NzUxMzgxNSwiZXhwIjoxNjUwMTkyMjE1fQ.i4tMpF1v2inHd_HNdmvzgIZ1-n7Sj3rRGvOKTCpeaus';
 
 // GET REQUEST
 function getTodos() {
@@ -14,13 +14,23 @@ function getTodos() {
   //   .then(res => showOutput(res))
   //   .catch(err => console.error(err));
 
-  axios
-    .get('https://jsonplaceholder.typicode.com/todos?_limit=5', {
-      timeout: 5000
-    })
-    .then(res => showOutput(res))
+//   axios
+//     .get('https://jsonplaceholder.typicode.com/todos?_limit=5', {
+//       timeout: 5000
+//     })
+//     .then(res => showOutput(res))
+//     .catch(err => console.error(err));
+// }
+
+//Hellofood
+
+axios
+    .get('https://codersbay.a-scho-wurscht.at/api/tasklist/99', {
+       timeout: 5000
+     })
+     .then(res => showOutput(res))
     .catch(err => console.error(err));
-}
+ }
 
 // POST REQUEST
 function addTodo() {
@@ -52,7 +62,7 @@ function removeTodo() {
     .catch(err => console.error(err));
 }
 
-// SIMULTANEOUS DATA
+// SIMULTANEOUS DATA array or requests
 function getData() {
   axios
     .all([
@@ -63,12 +73,12 @@ function getData() {
     .catch(err => console.error(err));
 }
 
-// CUSTOM HEADERS
+// CUSTOM HEADERS send tocken in header
 function customHeaders() {
   const config = {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: 'sometoken'
+      Authorization: 'sometoken' //JWT
     }
   };
 
@@ -194,7 +204,7 @@ function showOutput(res) {
       Data
     </div>
     <div class="card-body">
-      <pre>${JSON.stringify(res.data, null, 2)}</pre>
+      <pre>${JSON.stringify(res.data.tasks, null, 2)}</pre>
     </div>
   </div>
 
