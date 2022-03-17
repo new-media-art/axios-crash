@@ -1,6 +1,12 @@
 // AXIOS GLOBALS
-axios.defaults.headers.common['X-Auth-Token'] =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMxMiwiZW1haWwiOiJ0ZXN0MkBob3RtYWlsLmNvbSIsImdpdmVuX25hbWUiOiJBYmMiLCJmYW1pbHlfbmFtZSI6IkRlZiIsInBpY3R1cmUiOm51bGwsInByZWZlcnJlZF91c2VybmFtZSI6IkFiY2RlZiIsImlhdCI6MTY0NzUxMzgxNSwiZXhwIjoxNjUwMTkyMjE1fQ.i4tMpF1v2inHd_HNdmvzgIZ1-n7Sj3rRGvOKTCpeaus';
+
+axios.defaults.headers.common['Authorization'] =
+  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMxMiwiZW1haWwiOiJ0ZXN0MkBob3RtYWlsLmNvbSIsImdpdmVuX25hbWUiOiJBYmMiLCJmYW1pbHlfbmFtZSI6IkRlZiIsInBpY3R1cmUiOm51bGwsInByZWZlcnJlZF91c2VybmFtZSI6IkFiY2RlZiIsImlhdCI6MTY0NzUxMzgxNSwiZXhwIjoxNjUwMTkyMjE1fQ.i4tMpF1v2inHd_HNdmvzgIZ1-n7Sj3rRGvOKTCpeaus';
+
+
+
+
+
 
 // GET REQUEST
 function getTodos() {
@@ -22,7 +28,7 @@ function getTodos() {
 //     .catch(err => console.error(err));
 // }
 
-//Hellofood
+//Hellofood get Tasks
 
 axios
     .get('https://codersbay.a-scho-wurscht.at/api/tasklist/99', {
@@ -33,15 +39,39 @@ axios
  }
 
 // POST REQUEST
-function addTodo() {
-  axios
-    .post('https://jsonplaceholder.typicode.com/todos', {
-      title: 'New Todo',
-      completed: false
-    })
+// function addTodo() {
+//   axios
+//     .post('https://jsonplaceholder.typicode.com/todos', {
+//       title: 'New Todo',
+//       completed: false
+//     })
+//     .then(res => showOutput(res))
+//     .catch(err => console.error(err));
+// }
+
+//HelloFood post request
+
+ function addTodo() {
+   axios
+     .post('https://codersbay.a-scho-wurscht.at/api/task', {
+      
+      //api/task
+      
+        "assignedUserId": 312,
+        "description": "is this a HUGE Veggy BURGR?",
+        "taskListId": 99,
+        "status": "TODO",
+        "points": 0,
+        "estimation": 0,
+        "title": "YES!"
+      
+      
+      
+     })
     .then(res => showOutput(res))
     .catch(err => console.error(err));
-}
+ }
+
 
 // PUT/PATCH REQUEST
 function updateTodo() {
@@ -204,7 +234,7 @@ function showOutput(res) {
       Data
     </div>
     <div class="card-body">
-      <pre>${JSON.stringify(res.data.tasks, null, 2)}</pre>
+      <pre>${JSON.stringify(res.data.tasks, null, 2)}</pre> 
     </div>
   </div>
 
